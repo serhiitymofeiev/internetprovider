@@ -30,8 +30,8 @@ public class I18NCommand implements ICommand {
         boolean isNotExistUrl = session.getAttribute(Path.ATTRIBUTE_URL) == null;
         if (!isNotExistUrl)
         {
-            return "redirect";
-        };
+            return Path.COMMAND_REDIRECT_LANGUAGE;
+        }
 
         return Path.PAGE_INDEX;
     }

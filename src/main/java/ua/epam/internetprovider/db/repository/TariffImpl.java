@@ -48,7 +48,7 @@ public class TariffImpl implements ITariff {
      */
     @Override
     public Tariff getByName(String name) {
-        return (Tariff) this.queryBuilder.executeAndReturn(instance, GET_BY_NAME, name);
+        return this.queryBuilder.executeAndReturn(instance, GET_BY_NAME, name);
     }
 
     /**
@@ -58,7 +58,7 @@ public class TariffImpl implements ITariff {
      */
     @Override
     public Tariff getById(long id) {
-        return (Tariff) queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
+        return queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
     }
 
     /**

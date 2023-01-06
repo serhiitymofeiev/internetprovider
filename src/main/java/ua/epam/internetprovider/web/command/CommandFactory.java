@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class CommandFactory {
     private static CommandFactory factory = new CommandFactory();
-    private static Map<String, ICommand> commands = new HashMap<>();
+    private static final Map<String, ICommand> commands = new HashMap<>();
 
     private CommandFactory() {
 

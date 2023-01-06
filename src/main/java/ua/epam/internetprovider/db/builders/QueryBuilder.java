@@ -41,7 +41,7 @@ public abstract class QueryBuilder<T extends Entity> {
      * @throws SQLException the SQL exception
      */
     public final void execute(final DBManager instance, final String query) throws SQLException {
-        executeQuery(instance, query, new Object[0]);
+        executeQuery(instance, query);
     }
 
     /**

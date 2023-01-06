@@ -10,7 +10,7 @@
 <div class="container">
     <div class="card border-dark p-2 mt-3 mb-3">
         <div class="d-flex justify-content-start">
-            <form method="post" action="controller?action=edit_client">
+            <form method="post" action="controller?action=main">
                 <input type="hidden" name="user_id" value="${fullUser.id}">
                 <button type="submit"
                         name="btnBack"

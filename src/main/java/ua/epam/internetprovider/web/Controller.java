@@ -37,18 +37,6 @@ public class Controller extends HttpServlet {
         }
     }
 
-    public void doPostTest(HttpServletRequest req, HttpServletResponse resp)
-    {
-        try {
-            doPost(req, resp);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
     private void proccesRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
         CommandFactory commandFactory = CommandFactory.commandFactory();
         ICommand ICommand = commandFactory.getCommand(req);
@@ -59,15 +47,23 @@ public class Controller extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher(page);
 
         // if the forward address is not null go to the address
-        if (!page.equals("redirect"))
-            dispatcher.forward(req, resp);
-        else
+        if (page.equals(Path.COMMAND_REDIRECT_LANGUAGE))
         {
             HttpSession session = req.getSession(false);
-            HttpServletResponse response = (HttpServletResponse) session.getAttribute(Path.ATTRIBUTE_URL);
+            HttpServletResponse response;
+            if (session.getAttribute(Path.ATTRIBUTE_URL) instanceof String)
+            {
+                response = resp;
+            }
+            else
+            {
+                response = (HttpServletResponse) session.getAttribute(Path.ATTRIBUTE_URL);
+            }
             HttpServletRequest request = (HttpServletRequest) session.getAttribute(Path.ATTRIBUTE_REQUEST);
             proccesRequest(request, response);
         }
+        else if (!page.equals(Path.COMMAND_REDIRECT))
+            dispatcher.forward(req, resp);
 
     }
 }

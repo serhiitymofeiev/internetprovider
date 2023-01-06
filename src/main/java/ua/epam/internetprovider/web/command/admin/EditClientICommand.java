@@ -44,11 +44,11 @@ public class EditClientICommand implements ICommand {
             forward = blockUser(response, userService, user);
         }
 
-        if (request.getParameter("btnChangeUser") != null) {
+        else if (request.getParameter("btnChangeUser") != null) {
             forward = update(request, response, userService, user);
         }
 
-        if (request.getParameter("btnBack") != null) {
+        else if (request.getParameter("btnBack") != null) {
             forward = goBack(request, response);
         }
         return forward;

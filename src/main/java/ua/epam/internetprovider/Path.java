@@ -13,6 +13,7 @@ public final class Path {
     public static final String PAGE_ACCOUNT = "/WEB-INF/jsp/client/account.jsp";
 
    public static final String COMMAND_REDIRECT = "redirect";
+    public static final String COMMAND_REDIRECT_LANGUAGE = "redirect_language";
 
     // admin commands
     public static final String COMMAND_MAIN = "controller?action=main";

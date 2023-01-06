@@ -133,7 +133,14 @@ public class ReportBuilder {
             String tariffName = tariff.getName();
             if (tariffName.contains("*") || tariffName.contains("\\") || tariffName.contains("/") || tariffName.contains(":") ||
                     tariffName.contains("?") || tariffName.contains("<") || tariffName.contains(">") || tariffName.contains("\"")) {
-                tariffName = tariff.getName().replace('*', '_');
+                tariffName = tariffName.replace('>', '_');
+                tariffName = tariffName.replace('*', '_');
+                tariffName = tariffName.replace('\\', '_');
+                tariffName = tariffName.replace('/', '_');
+                tariffName = tariffName.replace(':', '_');
+                tariffName = tariffName.replace('?', '_');
+                tariffName = tariffName.replace('<', '_');
+
             }
 
             // if you want to save on the server
@@ -143,7 +150,7 @@ public class ReportBuilder {
 
             BaseFont myfont = BaseFont.createFont("C:\\Windows\\Fonts\\times.ttf", "cp1251", BaseFont.EMBEDDED);
 
-            String name = "Тариф <" + tariff.getName() + ">";
+            String name = "Тариф <" + tariffName + ">";
             Paragraph title = new Paragraph(name, new Font(myfont, 16));
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
@@ -194,7 +201,7 @@ public class ReportBuilder {
         // the contentlength
         response.setContentLength(baos.size());
         // write ByteArrayOutputStream to the ServletOutputStream
-        OutputStream os = null;
+        OutputStream os;
         try {
             os = response.getOutputStream();
             baos.writeTo(os);

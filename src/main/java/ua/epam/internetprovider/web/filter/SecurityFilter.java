@@ -17,7 +17,7 @@ public class SecurityFilter implements Filter {
     private static final Logger log = Logger.getLogger(SecurityFilter.class);
 
     // commands access
-    private static Map<Role, List<String>> accessMap = new HashMap<>();
+    private static final Map<Role, List<String>> accessMap = new HashMap<>();
     private static List<String> commons = new ArrayList<>();
     private static List<String> outOfControl = new ArrayList<>();
 

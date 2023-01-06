@@ -14,10 +14,10 @@ public class ServiceImpl implements IService {
     private static final String GET_ALL = "SELECT * FROM provider.services";
     private static final String GET_BY_ID = "SELECT id, name, description FROM provider.services WHERE id = ?";
     private static final String CREATE = "INSERT INTO provider.services (name, description) VALUES (?, ?)";
-    private static final String UPDATE = "UPDATE provider.services SET name = ?, description = ? WHERE id = ?";
+    //private static final String UPDATE = "UPDATE provider.services SET name = ?, description = ? WHERE id = ?";
     private static final String DELETE = "DELETE FROM provider.services WHERE id = ?";
 
-    private DBManager instance = DBManager.getInstance();
+    private final DBManager instance = DBManager.getInstance();
 
     /**
      * The procedure for obtaining a list of service packages
@@ -25,7 +25,7 @@ public class ServiceImpl implements IService {
      */
     @Override
     public List<PackageServices> getAll() {
-        QueryBuilder queryBuilder = new ServiceQueryBuilder();
+        QueryBuilder<PackageServices> queryBuilder = new ServiceQueryBuilder();
         return queryBuilder.executeAndReturnList(instance, GET_ALL);
     }
 
@@ -36,8 +36,8 @@ public class ServiceImpl implements IService {
      */
     @Override
     public PackageServices getById(long id) {
-        QueryBuilder queryBuilder = new ServiceQueryBuilder();
-        return (PackageServices) queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
+        QueryBuilder<PackageServices> queryBuilder = new ServiceQueryBuilder();
+        return queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
     }
 
     /**
@@ -46,7 +46,7 @@ public class ServiceImpl implements IService {
      */
     @Override
     public void create(PackageServices packageServices) throws SQLException {
-        QueryBuilder queryBuilder = new ServiceQueryBuilder();
+        QueryBuilder<PackageServices> queryBuilder = new ServiceQueryBuilder();
         queryBuilder.execute(instance, CREATE, packageServices.getName(), packageServices.getDescription());
     }
 
@@ -56,7 +56,7 @@ public class ServiceImpl implements IService {
      */
     @Override
     public void update(PackageServices packageServices) {
-        QueryBuilder queryBuilder = new ServiceQueryBuilder();
+        QueryBuilder<PackageServices> queryBuilder = new ServiceQueryBuilder();
         try {
             queryBuilder.execute(instance, CREATE, packageServices.getName(), packageServices.getDescription(),packageServices.getId());
         } catch (SQLException e) {
@@ -70,7 +70,7 @@ public class ServiceImpl implements IService {
      */
     @Override
     public void delete(long id) throws SQLException {
-        QueryBuilder queryBuilder = new ServiceQueryBuilder();
+        QueryBuilder<PackageServices> queryBuilder = new ServiceQueryBuilder();
         queryBuilder.execute(instance, DELETE, id);
     }
 }

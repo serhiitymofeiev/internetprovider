@@ -7,17 +7,14 @@ import ua.epam.internetprovider.db.entity.Tariff;
 import ua.epam.internetprovider.db.entity.User;
 import ua.epam.internetprovider.db.services.*;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.*;
 
 public class ConnectionPoolOneTest {
-    private String login;
+    private final String login;
     public ConnectionPoolOneTest() {
         login = "+380674561245";
     }
@@ -56,7 +53,6 @@ public class ConnectionPoolOneTest {
         String home = "4а";
         String apartment = "66";
         String email = "dfdfdf@mail.net";
-        String phone = login;
 
         String password = "A546dsdsll";
 
@@ -66,7 +62,7 @@ public class ConnectionPoolOneTest {
         details.setHome(home);
         details.setApartment(apartment);
         details.setEmail(email);
-        details.setPhone(phone);
+        details.setPhone(login);
         detailsService.save(details);
 
         Account account = new Account();
@@ -74,7 +70,7 @@ public class ConnectionPoolOneTest {
         account.setBalance(0);
         accountService.save(account);
 
-        Set<Tariff> tariffs = new HashSet<Tariff>();
+        Set<Tariff> tariffs = new HashSet<>();
         tariffs.add(tariffService.find(trafficsId));
 
         User newUser = new User();

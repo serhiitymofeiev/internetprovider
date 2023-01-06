@@ -105,7 +105,6 @@ public class UserServiceImpl implements IUserService {
     /**
      * Service procedure for receiving user tariffs
      * @param user a user object of type User
-     * @return returns a list of tariffs
      */
     @Override
     public void removeLinksUsersHasTariffs(User user) {

@@ -6,14 +6,14 @@ import javax.servlet.*;
 import java.io.IOException;
 
 /**
- * Enscoding filter class
+ * Encoding filter class
  */
 public class EncodingFilter implements Filter {
     private static final Logger log = Logger.getLogger(EncodingFilter.class);
     private String encoding;
 
     /**
-     * Procedure for destroying the enscoding filter
+     * Procedure for destroying the encoding filter
      */
     public void destroy() {
         log.debug("Filter destruction starts");
@@ -43,7 +43,7 @@ public class EncodingFilter implements Filter {
     }
 
     /**
-     * Procedure for initializing the enscoding filter
+     * Procedure for initializing the encoding filter
      * @param config filter configuration
      */
     public void init(FilterConfig config) {

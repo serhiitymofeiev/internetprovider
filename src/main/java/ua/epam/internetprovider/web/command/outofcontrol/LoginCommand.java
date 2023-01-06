@@ -10,8 +10,6 @@ import ua.epam.internetprovider.db.services.IUserService;
 import ua.epam.internetprovider.db.services.UserServiceImpl;
 import ua.epam.internetprovider.web.command.ICommand;
 
-import java.sql.SQLException;
-
 /**
  * Authorization command class
  */

@@ -117,22 +117,21 @@ public class AccountCommand implements ICommand {
     private String changeEmail(HttpServletRequest request, HttpServletResponse response, IContactDetailsService detailsService, User user) {
         String errorMessage;
         String resp = Path.COMMAND_ACCOUNT;
+        String email = request.getParameter("inputEmail");
 
-        String url = resp;
         HttpSession session = request.getSession(true);
         session.setAttribute(Path.ATTRIBUTE_URL, response);
         session.setAttribute(Path.ATTRIBUTE_REQUEST, request);
 
-        String email = request.getParameter("inputEmail");
         if (email == null || email.isEmpty()) {
             errorMessage = "Email can't be empty";
             request.setAttribute("errorMessage", errorMessage);
-        } else {
+            resp = Path.PAGE_ACCOUNT;
+        }
+        else {
             ContactDetails detail = user.getDetails();
             detail.setEmail(email);
             detailsService.update(detail);
-            resp = Path.PAGE_ACCOUNT;
-
             try {
                 response.sendRedirect(resp);
                 resp = Path.COMMAND_REDIRECT;
@@ -149,7 +148,6 @@ public class AccountCommand implements ICommand {
         String password = request.getParameter("inputPassword");
 
         HttpSession session = request.getSession(true);
-        resp = Path.COMMAND_REDIRECT;
         session.setAttribute(Path.ATTRIBUTE_URL, response);
         session.setAttribute(Path.ATTRIBUTE_REQUEST, request);
 

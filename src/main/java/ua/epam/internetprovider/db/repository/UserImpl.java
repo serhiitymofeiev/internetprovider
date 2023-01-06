@@ -6,7 +6,6 @@ import ua.epam.internetprovider.db.builders.UserQueryBuilder;
 import ua.epam.internetprovider.db.entity.Tariff;
 import ua.epam.internetprovider.db.entity.User;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -27,8 +26,8 @@ public class UserImpl implements IUser {
 
     private static final String GET_NEXT_AUTO_INCREMENT = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'provider' AND TABLE_NAME = 'users'";
 
-    private DBManager instance = DBManager.getInstance();
-    private QueryBuilder queryBuilder = new UserQueryBuilder();
+    private final DBManager instance = DBManager.getInstance();
+    private final QueryBuilder<User> queryBuilder = new UserQueryBuilder();
 
     /**
      * The procedure for obtaining a list of all users
@@ -46,7 +45,7 @@ public class UserImpl implements IUser {
      */
     @Override
     public User getById(long id) {
-        return (User) queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
+        return queryBuilder.executeAndReturn(instance, GET_BY_ID, id);
     }
 
     /**
@@ -92,7 +91,7 @@ public class UserImpl implements IUser {
      */
     @Override
     public User getByLogin(String login) {
-        return (User) queryBuilder.executeAndReturn(instance, GET_BY_LOGIN, login);
+        return queryBuilder.executeAndReturn(instance, GET_BY_LOGIN, login);
     }
 
     /**
@@ -102,7 +101,7 @@ public class UserImpl implements IUser {
      */
     @Override
     public List<Tariff> getTariffs(User user) {
-        QueryBuilder queryBuilder = new TariffQueryBuilder();
+        QueryBuilder<Tariff> queryBuilder = new TariffQueryBuilder();
         return queryBuilder.executeAndReturnList(instance, GET_LINK_USERS_HAS_TRAFFICS, user.getId());
     }
 
@@ -114,7 +113,7 @@ public class UserImpl implements IUser {
     @Override
     public void addLinksUsersHasTariffs(User user, String[] tariffsId) throws SQLException {
         User tmp = getByLogin(user.getLogin());
-        QueryBuilder queryBuilder = new TariffQueryBuilder();
+        QueryBuilder<Tariff> queryBuilder = new TariffQueryBuilder();
         for (String id : tariffsId) {
             queryBuilder.execute(instance, ADD_LINK_USERS_HAS_TRAFFICS, tmp.getId(), id);
         }
