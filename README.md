@@ -24,20 +24,19 @@ The Subscriber is provided with a list of Services (Telephone, Internet, Cable T
 
 ##   **_Used patterns_**
 
-  MVC
-  DAO
-  Abstract factory for dao for different users
-  Singleton for ConnectionPool
+  *  MVC
+  *  DAO
+  *  Singleton for ConnectionPool
   
 ## **_Builder_**
 
-  Set up project
-  Clone current repository
-  Set your database connect rules in restaurant/src/main/webapp/META-INF/context.xml
-  Run internetprovider/src/main/resources/sql/create_db.sql to set up database on your devise
-  Run internetprovider/src/main/resources/sql/insert_test_data.sql to insert data for testing purposes
-  Run app using servlet container (Recommended Tomcat v.9.0.68)
-  Use app in your browser
+  *  Set up project
+  *  Clone current repository
+  *  Set your database connect rules in restaurant/src/main/webapp/META-INF/context.xml
+  *  Run internetprovider/src/main/resources/sql/create_db.sql to set up database on your devise
+  *  Run internetprovider/src/main/resources/sql/insert_test_data.sql to insert data for testing purposes
+  *  Run app using servlet container (Recommended Tomcat v.9.0.68)
+  *  Use app in your browser
   
 ## **_Database schema_**
 
